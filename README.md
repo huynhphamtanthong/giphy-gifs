@@ -1,27 +1,52 @@
-# GiphyGifs
+# GIF Viewer Web App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+This project is a web application developed for PI.EXCHANGE PTY LTD as part of their Frontend Engineering coding challenge. The application allows users to browse trending GIFs from Giphy, search for specific GIFs, and view details of individual GIFs.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Display a list of trending GIFs from Giphy.
+- Allow users to search for GIFs using keywords.
+- View details of each GIF, including username and rating.
 
-## Code scaffolding
+## Framework and Tools
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application is built using Angular. The application also utilizes the Giphy API for fetching GIF data.
 
-## Build
+## Folder Structure
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The folder structure follows best practices for Angular projects, ensuring scalability and maintainability. Here's a brief overview:
 
-## Running unit tests
+- **src/app/components:** Contains individual components used throughout the application, such as the GIF list, search bar, and GIF details.
+- **src/app/utils:** Houses services responsible for handling common functional and business logic.
+- **src/app/models:** Defines TypeScript interfaces for representing GIF and others (if any) data structures.
+- **src/app/assets:** Includes static assets such as images or CSS files used in the application.
+- **src/environments:** Contains environment-specific configuration files, such as API keys.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running the Application
 
-## Running end-to-end tests
+To run the application locally, follow these steps:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install dependencies.
+4. Run `npm start` to start the development server.
+5. Open a web browser and navigate to `http://localhost:4200` to view the application.
 
-## Further help
+## Evaluation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+I spent approximately around 16 hours on completing the coding test, mostly on the work of learning a new framework - Angular. If given more time, I would focus on refining the user interface, optimizing performance, and adding additional features as outlined above, particularly:
+- Adding login-signup parts for personalized data.
+- Implementing pagination for fetching large sets of GIFs.
+- Adding user authentication to allow users to save favorite GIFs.
+- Enhancing the search functionality with autocomplete suggestions.
+- Improving the UI design to provide a more visually appealing experience.
+- Writing unit tests to ensure the reliability of critical components.
+- Adding animation in expand-collapse sections for more attractive views.
+- Adding skeleton for gifs loading.
+- Adding local storage for faster output and prevent api timeout/overload.
+- Structuring the codebase more for the purpose of easy coding and maintaining.
+- ...
+
+## Conclusion
+
+Overall, the GIF Viewer Web App provides a functional and intuitive interface for browsing trending GIFs from Giphy. The codebase is well-structured and easy to maintain, ensuring a seamless development experience for future iterations.
