@@ -12,16 +12,21 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.2.0",
+    "@angular/cdk": "^17.2.2",
     "@angular/common": "^17.2.0",
     "@angular/compiler": "^17.2.0",
     "@angular/core": "^17.2.0",
     "@angular/forms": "^17.2.0",
+    "@angular/material": "^17.2.2",
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",
     "@angular/platform-server": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@angular/ssr": "^17.2.2",
     "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "masonry-layout": "^4.2.2",
+    "ngx-masonry": "^14.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -32,6 +37,7 @@
     "@angular/compiler-cli": "^17.2.0",
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
+    "@types/lodash": "^4.14.202",
     "@types/node": "^18.18.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -40,5 +46,10 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.3.2"
+  },
+  "overrides": {
+    "ngx-masonry": {
+      "masonry-layout": "github:cliqqz/masonry#ffd2b614237176fd184b70b90a4559f9716dd29c"
+    }
   }
 }

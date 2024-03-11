@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Giphy Explorer</h1>
+
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Search GIFs"
+    (keyup)="onSearch()"
+    class="input-gif-search"
+  />
+
+  <div class="gifs" *ngIf="searchResults.length == 0">
+    <h2>Trending GIFs</h2>
+    <!-- <div *ngFor="let gif of trendingGifs">
+      <img [src]="gif.url" alt="GIF" (click)="selectGif(gif)" />
+    </div> -->
+
+    <app-grid-list
+      [items]="trendingGifs"
+      (selectItem)="(selectGif)"
+    ></app-grid-list>
+  </div>
+
+  <div class="search-results" *ngIf="searchResults.length > 0">
+    <h2>Search Results</h2>
+    <!-- <div *ngFor="let gif of searchResults">
+      <img [src]="gif.url" alt="GIF" (click)="selectGif(gif)" />
+    </div> -->
+    <app-grid-list
+      [items]="searchResults"
+      (selectItem)="(selectGif)"
+    ></app-grid-list>
+  </div>
+
+  <div class="expanded-gif" *ngIf="selectedGif">
+    <img [src]="selectedGif.url" alt="GIF" />
+    <p>Title: {{ selectedGif.title }}</p>
+    <p>Username: {{ selectedGif.username }}</p>
+    <p>Rating: {{ selectedGif.rating }}</p>
+    <button (click)="closeExpandedGif()">Close</button>
+  </div>
+</div>
