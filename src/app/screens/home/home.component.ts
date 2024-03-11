@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment.development';
 import { GridListComponent } from 'src/app/screens/grid-list/grid-list.component';
 import { Gif } from 'src/app/assets/models/gif-model';
 import { Subject, debounceTime } from 'rxjs';
-import { CommonUtils } from 'src/app/utils/common-utils';
 
 @Component({
   selector: 'app-home',
@@ -49,26 +48,11 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  onSearch() {
-    this.searchSubject.next(this.searchQuery);
-  }
-
-  selectGif(gif: Gif) {
-    this.selectedGif = gif;
-  }
-
-  closeExpandedGif() {
-    this.selectedGif = null;
-  }
-
-  onResize(event: Event) {
-    // Handle resizing logic here if needed
-  }
   performSearch(searchValue: string) {
-    if (this.searchQuery) {
+    if (searchValue) {
       this.http
         .get<any>(
-          `https://api.giphy.com/v1/gifs/search?api_key=${environment.giphyApiKey}&q=${this.searchQuery}&limit=10`
+          `https://api.giphy.com/v1/gifs/search?api_key=${environment.giphyApiKey}&q=${searchValue}&limit=10`
         )
         .subscribe((response) => {
           this.searchResults = response.data.map((gif: any) => ({
@@ -82,5 +66,17 @@ export class HomeComponent implements OnInit {
     } else {
       this.searchResults = [];
     }
+  }
+
+  onSearch() {
+    this.searchSubject.next(this.searchQuery);
+  }
+
+  selectGif(gif: Gif) {
+    this.selectedGif = gif;
+  }
+
+  closeExpandedGif() {
+    this.selectedGif = null;
   }
 }

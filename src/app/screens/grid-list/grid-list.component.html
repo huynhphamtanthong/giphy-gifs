@@ -1,44 +1,33 @@
-<!-- <ngx-masonry [options]=""> -->
-<!-- <div class="col-md-4" *ngFor="let item of items">
-  <img [src]="item.url" alt="GIF" class="masonry-item-image" />
-</div> -->
-<!-- </ngx-masonry> -->
-
-<!-- <mat-grid-list cols="3" rowHeight="1:1" class="masonry-list">
-  <mat-grid-tile class="masonry-item" *ngFor="let item of items">
-    <div class="masonry-item-container">
-      <img [src]="item.url" alt="GIF" class="masonry-item-image" />
-      <p class="masonry-item-detail">hello</p>
-    </div>
-  </mat-grid-tile> -->
-<!-- <mat-grid-tile>1</mat-grid-tile>
-  <mat-grid-tile>2</mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile> -->
-<!-- </mat-grid-list> -->
 <div class="grid-list-container" fxLayoutAlign="center start">
+  <!-- A grid layout with default 3 columns  -->
   <div *ngFor="let row of gridItems" class="column-grid-list-wrapper">
+    <!-- Each columns with at least data.length / cols   -->
     <div *ngFor="let item of row" class="single-grid-list">
+      <!-- Card item  -->
       <mat-card class="item-container" (click)="toggleExpansion(item)">
+        <!-- Gif display  -->
         <img [src]="item.url" alt="GIF" class="item-image" />
-        <!-- Please add and animation view here  -->
+        <!-- Gif expansion description  -->
         <div class="item-content" *ngIf="item.expanded">
-          <!-- Your content here -->
+          <!-- Title container -->
           <div class="item-content-description-container" *ngIf="item.title">
             <p class="item-content-description">
               <b class="item-content-description-title">Title: </b
               >{{ item.title }}
             </p>
           </div>
+          <!-- Username container -->
           <div class="item-content-description-container" *ngIf="item.username">
             <p class="item-content-description">
               <b class="item-content-description-title">Username: </b
               >{{ item.username }}
             </p>
           </div>
+          <!-- Rating container -->
           <div class="item-content-description-container" *ngIf="item.rating">
             <p class="item-content-description">
               <b class="item-content-description-title">Rating: </b>
+              <!-- Rating star display -->
               <mat-icon
                 aria-hidden="false"
                 aria-label="Example home icon"

@@ -4,39 +4,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
-
 import { NgxMasonryModule } from 'ngx-masonry';
-import { Observable, Subject } from 'rxjs';
 import { Gif } from 'src/app/assets/models/gif-model';
 import { CommonUtils } from 'src/app/utils/common-utils';
 import { GifsRating } from 'src/app/utils/gifs-rating';
-
-// export const expandAnimation = trigger('expand', [
-//   state(
-//     'collapsed',
-//     style({
-//       height: '0',
-//       opacity: '0',
-//       overflow: 'hidden',
-//     })
-//   ),
-//   state(
-//     'expanded',
-//     style({
-//       height: '*',
-//       opacity: '1',
-//     })
-//   ),
-//   transition('collapsed <=> expanded', [animate('0.3s ease')]),
-// ]);
 
 @Component({
   selector: 'app-grid-list',
