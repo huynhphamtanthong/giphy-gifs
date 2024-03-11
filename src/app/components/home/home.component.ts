@@ -3,7 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment.development';
-import { GridListComponent } from 'src/app/screens/grid-list/grid-list.component';
+import { GridListComponent } from 'src/app/components/grid-list/grid-list.component';
 import { Gif } from 'src/app/assets/models/gif-model';
 import { Subject, debounceTime } from 'rxjs';
 
