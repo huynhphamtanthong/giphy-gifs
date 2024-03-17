@@ -3,10 +3,21 @@
   <div *ngFor="let row of gridItems" class="column-grid-list-wrapper">
     <!-- Each columns with at least data.length / cols   -->
     <div *ngFor="let item of row" class="single-grid-list">
+      <!-- Default item view when loading -->
+      <div class="background" *ngIf="!item.isLoadDone">
+        <!-- Placeholder background -->
+        Loading...
+      </div>
       <!-- Card item  -->
       <mat-card class="item-container" (click)="toggleExpansion(item)">
         <!-- Gif display  -->
-        <img [src]="item.url" alt="GIF" class="item-image" loading="lazy" />
+        <img
+          [src]="item.url"
+          alt="GIF"
+          class="item-image"
+          loading="lazy"
+          (load)="onLoadDone(item)"
+        />
         <!-- Gif expansion description  -->
         <div class="item-content" *ngIf="item.isExpanded">
           <!-- Title container -->

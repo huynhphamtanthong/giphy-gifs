@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
           username: gif.username,
           rating: gif.rating,
           url: gif.images.original.url,
+          isLoadDone: false,
         }));
         this.trendingGifs = this.trendingGifs.concat(newGifs);
         this.isLoading = false;
@@ -87,6 +88,7 @@ export class HomeComponent implements OnInit {
             username: gif.username,
             rating: gif.rating,
             url: gif.images.original.url,
+            isLoadDone: false,
           }));
           this.searchResults = this.searchResults.concat(newGifs);
           this.isLoading = false;

@@ -5,4 +5,5 @@ export interface Gif {
   rating: string;
   url: string;
   isExpanded?: boolean;
+  isLoadDone?: boolean;
 }

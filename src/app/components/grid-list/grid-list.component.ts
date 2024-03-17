@@ -48,4 +48,8 @@ export class GridListComponent implements OnInit {
   getStarRating(item: Gif): number {
     return GifsRating.alignTextToNumberRating(item.rating);
   }
+
+  onLoadDone(item: Gif) {
+    item.isLoadDone = true;
+  }
 }
