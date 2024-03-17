@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,16 +15,29 @@ import { Subject, debounceTime } from 'rxjs';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  trendingGifs: Gif[] = [];
-  searchQuery = '';
-  searchResults: Gif[] = [];
-  selectedGif: Gif | null = null;
+  trendingGifs: Gif[] = []; // Default gits (Trending)
+  searchResults: Gif[] = []; // Gifs search results
+  searchQuery = ''; // Search text
+  searchLimit = 20;
+
+  selectedGif: Gif | null = null; // Variable on/off gif description
+
+  page = 0; // Track page number for pagination
+  isLoading = false; // Flag to prevent multiple requests
 
   constructor(private http: HttpClient) {}
   private searchSubject = new Subject<string>();
   private readonly debounceTimeMs = 750;
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event) {
+    this.onScroll(event);
+  }
+
   ngOnInit() {
     this.fetchTrendingGifs();
+
+    // Add debounce time for search
     this.searchSubject
       .pipe(debounceTime(this.debounceTimeMs))
       .subscribe((searchValue) => {
@@ -32,36 +45,51 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  // Api fetch gifs from Giphy Gifs https://giphy.com/
   fetchTrendingGifs() {
+    this.isLoading = true;
     this.http
       .get<any>(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${environment.giphyApiKey}&limit=10`
+        `https://api.giphy.com/v1/gifs/trending?api_key=${
+          environment.giphyApiKey
+        }&limit=${this.searchLimit}&offset=${this.searchLimit * this.page}`
       )
       .subscribe((response) => {
-        this.trendingGifs = response.data.map((gif: any) => ({
+        const newGifs = response.data.map((gif: any) => ({
           id: gif.id,
           title: gif.title,
           username: gif.username,
           rating: gif.rating,
           url: gif.images.original.url,
         }));
+        this.trendingGifs = this.trendingGifs.concat(newGifs);
+        this.isLoading = false;
       });
   }
 
+  // Search
   performSearch(searchValue: string) {
+    this.isLoading = true;
+
     if (searchValue) {
       this.http
         .get<any>(
-          `https://api.giphy.com/v1/gifs/search?api_key=${environment.giphyApiKey}&q=${searchValue}&limit=10`
+          `https://api.giphy.com/v1/gifs/search?api_key=${
+            environment.giphyApiKey
+          }&q=${searchValue}&limit=${this.searchLimit}&offset=${
+            this.searchLimit * this.page
+          }`
         )
         .subscribe((response) => {
-          this.searchResults = response.data.map((gif: any) => ({
+          const newGifs = response.data.map((gif: any) => ({
             id: gif.id,
             title: gif.title,
             username: gif.username,
             rating: gif.rating,
             url: gif.images.original.url,
           }));
+          this.searchResults = this.searchResults.concat(newGifs);
+          this.isLoading = false;
         });
     } else {
       this.searchResults = [];
@@ -69,7 +97,8 @@ export class HomeComponent implements OnInit {
   }
 
   onSearch() {
-    this.searchSubject.next(this.searchQuery);
+    this.page = 0; // Reset page
+    this.searchSubject.next(this.searchQuery); // Search query
   }
 
   selectGif(gif: Gif) {
@@ -78,5 +107,17 @@ export class HomeComponent implements OnInit {
 
   closeExpandedGif() {
     this.selectedGif = null;
+  }
+
+  onScroll(event: any) {
+    const pageHeight = window.innerHeight;
+    const scrollPosition = pageHeight + window.scrollY;
+    const currentScrollYHeight = scrollPosition - (this.page + 1) * pageHeight;
+    const bottomThreshold = 0.95 * pageHeight + this.page * pageHeight;
+    if (currentScrollYHeight >= bottomThreshold && !this.isLoading) {
+      this.page++;
+      if (this.searchQuery) this.performSearch(this.searchQuery);
+      else this.fetchTrendingGifs();
+    }
   }
 }

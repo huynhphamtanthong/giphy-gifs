@@ -6,9 +6,9 @@
       <!-- Card item  -->
       <mat-card class="item-container" (click)="toggleExpansion(item)">
         <!-- Gif display  -->
-        <img [src]="item.url" alt="GIF" class="item-image" />
+        <img [src]="item.url" alt="GIF" class="item-image" loading="lazy" />
         <!-- Gif expansion description  -->
-        <div class="item-content" *ngIf="item.expanded">
+        <div class="item-content" *ngIf="item.isExpanded">
           <!-- Title container -->
           <div class="item-content-description-container" *ngIf="item.title">
             <p class="item-content-description">

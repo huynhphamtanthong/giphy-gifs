@@ -4,5 +4,5 @@ export interface Gif {
   username: string;
   rating: string;
   url: string;
-  expanded?: boolean;
+  isExpanded?: boolean;
 }

@@ -42,7 +42,7 @@ export class GridListComponent implements OnInit {
   ngOnDestroy() {}
 
   toggleExpansion(item: Gif): void {
-    item.expanded = !item.expanded;
+    item.isExpanded = !item.isExpanded;
   }
 
   getStarRating(item: Gif): number {
