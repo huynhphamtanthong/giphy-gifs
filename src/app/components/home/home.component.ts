@@ -6,11 +6,18 @@ import { environment } from 'src/environments/environment.development';
 import { GridListComponent } from 'src/app/components/grid-list/grid-list.component';
 import { Gif } from 'src/app/assets/models/gif-model';
 import { Subject, debounceTime } from 'rxjs';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule, GridListComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    GridListComponent,
+    HeaderComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
 })
