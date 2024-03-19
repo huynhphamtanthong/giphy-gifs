@@ -34,14 +34,13 @@ To run the application locally, follow these steps:
 
 ## Evaluation
 
-I spent approximately around 16 hours on completing the coding test, mostly on the work of learning a new framework - Angular. If given more time, I would focus on refining the user interface, optimizing performance, and adding additional features as outlined above, particularly:
+I spent approximately around 20 hours on completing the coding test, mostly on the work of learning a new framework - Angular. If given more time, I would focus on refining the user interface, optimizing performance, and adding additional features as outlined above, particularly:
 - Adding login-signup parts for personalized data.
-- Implementing pagination for fetching large sets of GIFs.
 - Adding user authentication to allow users to save favorite GIFs.
 - Enhancing the search functionality with autocomplete suggestions.
 - Improving the UI design to provide a more visually appealing experience.
 - Writing unit tests to ensure the reliability of critical components.
-- Adding animation in expand-collapse sections for more attractive views.
+- Adding animation in expand-collapse sections,... for more attractive views.
 - Adding skeleton for gifs loading.
 - Adding local storage for faster output and prevent api timeout/overload.
 - Structuring the codebase more for the purpose of easy coding and maintaining.
