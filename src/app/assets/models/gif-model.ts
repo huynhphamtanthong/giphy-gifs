@@ -4,6 +4,4 @@ export interface Gif {
   username: string;
   rating: string;
   url: string;
-  isExpanded?: boolean;
-  isLoadDone?: boolean;
 }

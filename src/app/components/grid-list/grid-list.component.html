@@ -3,62 +3,8 @@
   <div *ngFor="let row of gridItems" class="column-grid-list-wrapper">
     <!-- Each columns with at least data.length / cols   -->
     <div *ngFor="let item of row" class="single-grid-list">
-      <!-- Default item view when loading -->
-      <div class="background" *ngIf="!item.isLoadDone">
-        <!-- Placeholder background -->
-        Loading...
-      </div>
       <!-- Card item  -->
-      <mat-card class="item-container" (click)="toggleExpansion(item)">
-        <!-- Gif display  -->
-        <img
-          [src]="item.url"
-          alt="GIF"
-          class="item-image"
-          loading="lazy"
-          (load)="onLoadDone(item)"
-        />
-        <!-- Gif expansion description  -->
-        <div class="item-content" *ngIf="item.isExpanded">
-          <!-- Title container -->
-          <div class="item-content-description-container" *ngIf="item.title">
-            <p class="item-content-description">
-              <b class="item-content-description-title">Title: </b
-              >{{ item.title }}
-            </p>
-          </div>
-          <!-- Username container -->
-          <div class="item-content-description-container" *ngIf="item.username">
-            <p class="item-content-description">
-              <b class="item-content-description-title">Username: </b
-              >{{ item.username }}
-            </p>
-          </div>
-          <!-- Rating container -->
-          <div class="item-content-description-container" *ngIf="item.rating">
-            <p class="item-content-description">
-              <b class="item-content-description-title">Rating: </b>
-              <!-- Rating star display -->
-              <mat-icon
-                aria-hidden="false"
-                aria-label="Example home icon"
-                fontIcon="star"
-                class="star-icon"
-                *ngFor="let _ of [].constructor(getStarRating(item))"
-              ></mat-icon>
-              <mat-icon
-                aria-hidden="false"
-                aria-label="Example home icon"
-                fontIcon="star_border"
-                class="star-icon"
-                *ngFor="
-                  let _ of [].constructor(maxRating - getStarRating(item))
-                "
-              ></mat-icon>
-            </p>
-          </div>
-        </div>
-      </mat-card>
+      <app-gif [item]="item" [maxRating]="maxRating"></app-gif>
     </div>
   </div>
 </div>

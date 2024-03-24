@@ -78,7 +78,6 @@ export class HomeComponent implements OnInit {
   // Search
   performSearch(searchValue: string) {
     this.isLoading = true;
-
     if (searchValue) {
       this.http
         .get<any>(
@@ -97,7 +96,9 @@ export class HomeComponent implements OnInit {
             url: gif.images.original.url,
             isLoadDone: false,
           }));
-          this.searchResults = this.searchResults.concat(newGifs);
+          if (this.page !== 0)
+            this.searchResults = this.searchResults.concat(newGifs);
+          else this.searchResults = newGifs;
           this.isLoading = false;
         });
     } else {

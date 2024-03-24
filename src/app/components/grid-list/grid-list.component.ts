@@ -3,23 +3,16 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatIconModule } from '@angular/material/icon';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { Gif } from 'src/app/assets/models/gif-model';
 import { CommonUtils } from 'src/app/utils/common-utils';
 import { GifsRating } from 'src/app/utils/gifs-rating';
+import { GifComponent } from '../gif/gif.component';
 
 @Component({
   selector: 'app-grid-list',
   standalone: true,
-  imports: [
-    NgxMasonryModule,
-    MatGridListModule,
-    MatExpansionModule,
-    MatCardModule,
-    CommonModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, GifComponent],
   templateUrl: './grid-list.component.html',
   styleUrls: ['./grid-list.component.sass'],
 })
@@ -36,20 +29,9 @@ export class GridListComponent implements OnInit {
   }
 
   ngOnChanges() {
+    console.log(this.items);
     this.gridItems = CommonUtils.splitListIntoMatrix2d(this.items);
   }
 
   ngOnDestroy() {}
-
-  toggleExpansion(item: Gif): void {
-    item.isExpanded = !item.isExpanded;
-  }
-
-  getStarRating(item: Gif): number {
-    return GifsRating.alignTextToNumberRating(item.rating);
-  }
-
-  onLoadDone(item: Gif) {
-    item.isLoadDone = true;
-  }
 }
